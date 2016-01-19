@@ -1,0 +1,26 @@
+{
+    "manifest_version": 2,
+    "name": "Reorder Columns",
+    "description": "Reordering List Columns",
+    "version": "1.0",
+    "browser_action": {
+        "default_icon": {
+            "19": "AppIcon19.png",
+            "38": "AppIcon38.png"
+        },
+        "default_popup": "index.html"
+    },
+    "icons": {
+        "16": "AppIcon16.png",
+        "32": "AppIcon32.png",
+        "48": "AppIcon48.png",
+        "96": "AppIcon96.png",
+        "128": "AppIcon.png"
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "permissions": [
+        "tabs",
+        "http://*/*",
+        "https://*/*"
+    ]
+}
