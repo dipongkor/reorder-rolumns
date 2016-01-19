@@ -1,7 +1,20 @@
 (function () {
-    var myapp = angular.module('reorder-app', ['ui']);
+    var myapp = angular.module('reorder-app', ['ui', 'ngAnimate', 'toastr']);
 
-    myapp.controller('controller', function ($scope) {
+    myapp.config(function (toastrConfig) {
+        angular.extend(toastrConfig, {
+            autoDismiss: true,
+            containerId: 'toast-container',
+            maxOpened: 0,
+            newestOnTop: true,
+            positionClass: 'toast-top-full-width',
+            preventDuplicates: false,
+            preventOpenDuplicates: false,
+            target: 'body'
+        });
+    });
+
+    myapp.controller('controller', function ($scope, toastr) {
 
         $scope.selectedList = {
             selectedContentType: {
@@ -16,7 +29,7 @@
                 });
 
                 chrome.tabs.executeScript({
-                    file: 'Scripts/start.js'
+                    file: 'Scripts/get-lists.js'
                 });
             }
         };
@@ -24,17 +37,14 @@
         $scope.livePreviewMessageListener = function (msg) {
             if (msg.key == "allList") {
                 $scope.allList = msg.value;
+                toastr.info($scope.allList.length + " lists found.", 'Reorder List Columns');
                 $scope.$apply();
             }
             else if (msg.key == "contentTypesDetails") {
                 $scope.selectedList.selectedContentType.Fields = msg.value;
                 $scope.$apply();
             } else if (msg.key == "reorderDone") {
-                $scope.message = {
-                    category : 'success',
-                    text: 'Columns reordered successfully.'
-                };
-                
+                toastr.success("New order apllied successfully.", 'Reorder List Columns');
                 $scope.$apply();
             }
         };
@@ -58,6 +68,4 @@
 
         $scope.init($scope.livePreviewMessageListener);
     });
-
-    angular.bootstrap(document, ['reorder-app']);
 })();

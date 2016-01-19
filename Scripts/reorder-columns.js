@@ -7,8 +7,10 @@
     }
 
     window.addEventListener("message", function (event) {
-        var port = chrome.runtime.connect();
-        port.postMessage(event.data);
+        if (event.data) {
+            var port = chrome.runtime.connect();
+            port.postMessage(event.data);
+        }
     });
 
     injectCodeToPage(reorderColumns, JSON.stringify(selectedList));
@@ -40,7 +42,7 @@
             }
         }
 
-        function onFailure(sender, args) { 
+        function onFailure(sender, args) {
             window.postMessage({ key: "Error", value: args.get_message() }, "*");
         }
     }

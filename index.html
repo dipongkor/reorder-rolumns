@@ -4,13 +4,16 @@
     <head>
         <title>Reorder Column</title>
         <link rel="stylesheet" href="Content/bootstrap.min.css">
+        <link rel="stylesheet" href="Content/angular-toastr.css">
         <link rel="stylesheet" href="Content/reorder-app.css">
-        <script src="Scripts/jquery-1.9.1.min.js"></script>
-        <script src="Scripts/jquery-ui.min.js"></script>
-        <script src="Scripts/bootstrap.min.js"></script>
-        <script src="Scripts/angular.min.js"></script>
-        <script src="Scripts/angular-ui.min.js"></script>
-        <script src="app.js"></script>
+        <script src="Scripts/lib/jquery-1.9.1.min.js"></script>
+        <script src="Scripts/lib/jquery-ui.min.js"></script>
+        <script src="Scripts/lib/bootstrap.min.js"></script>
+        <script src="Scripts/lib/angular.min.js"></script>
+        <script src="Scripts/lib/angular-ui.min.js"></script>
+        <script src="Scripts/lib/angular-animate.js"></script>
+        <script src="Scripts/lib/angular-toastr.tpls.js"></script>
+        <script src="Scripts/app.js"></script>
     </head>
     
     <body data-ng-app="reorder-app" style="width:500px">
@@ -32,10 +35,7 @@
                     </div>
                 </form>
             </div>
-            <div class="row">
-                <div class="alert alert-{{message.category}}" data-ng-show="message.category" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>{{message.text}}</div>
-            </div>
+          
             <div class="row" data-ng-show="selectedList.selectedContentType.Fields.length > 0">
                 <table class="table table-bordered">
                     <thead>

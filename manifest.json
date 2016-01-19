@@ -5,17 +5,17 @@
     "version": "1.0",
     "browser_action": {
         "default_icon": {
-            "19": "AppIcon19.png",
-            "38": "AppIcon38.png"
+            "19": "Icons/AppIcon19.png",
+            "38": "Icons/AppIcon38.png"
         },
         "default_popup": "index.html"
     },
     "icons": {
-        "16": "AppIcon16.png",
-        "32": "AppIcon32.png",
-        "48": "AppIcon48.png",
-        "96": "AppIcon96.png",
-        "128": "AppIcon.png"
+        "16": "Icons/AppIcon16.png",
+        "32": "Icons/AppIcon32.png",
+        "48": "Icons/AppIcon48.png",
+        "96": "Icons/AppIcon96.png",
+        "128": "Icons/AppIcon.png"
     },
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "permissions": [

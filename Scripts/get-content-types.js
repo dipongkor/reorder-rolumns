@@ -1,5 +1,4 @@
 (function () {
-    
     function injectCodeToPage(code, args) {
         var script = document.createElement('script');
         script.textContent = '(' + code + ')(' + (args || '') + ');';
@@ -8,10 +7,12 @@
     }
 
     window.addEventListener("message", function (event) {
-        var port = chrome.runtime.connect();
-        port.postMessage(event.data);
+        if (event.data) {
+            var port = chrome.runtime.connect();
+            port.postMessage(event.data);
+        }
     });
-    
+
     injectCodeToPage(getContentTypesDetails, '"' + restUrl + '"');
 
     function getContentTypesDetails(url) {
@@ -27,8 +28,7 @@
                     console.log('Error: ' + xmlhttp.statusText);
                 }
             }
-        }
-
+        };
         xmlhttp.send();
     }
 })();
