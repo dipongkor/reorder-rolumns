@@ -8,7 +8,7 @@
 
     window.addEventListener("message", function (event) {
         if (event.data) {
-            var port = chrome.runtime.connect();
+            var port = chrome.runtime.connect({ name: "ReorderSPColumns" });
             port.postMessage(event.data);
         }
     });
