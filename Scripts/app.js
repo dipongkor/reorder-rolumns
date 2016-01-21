@@ -1,5 +1,5 @@
 (function () {
-    var myapp = angular.module('reorder-app', ['ui', 'ngAnimate', 'toastr']);
+    var myapp = angular.module('reorder-app', ['ui.sortable', 'ngAnimate', 'toastr']);
 
     myapp.config(function (toastrConfig) {
         angular.extend(toastrConfig, {

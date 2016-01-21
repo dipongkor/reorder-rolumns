@@ -1,0 +1,24 @@
+{
+  "name": "reorder",
+  "description": "reorder list columns",
+  "main": "index.js",
+  "authors": [
+    "Atish"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/dipongkor/reorder-rolumns",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-toastr": "~1.6.0",
+    "angular-ui-sortable": "~0.13.4",
+    "bootstrap": "~3.3.6",
+    "angular-animate": "~1.4.9"
+  }
+}
