@@ -5,14 +5,7 @@
         (document.head || document.documentElement).appendChild(script);
         script.parentNode.removeChild(script);
     }
-
-    window.addEventListener("message", function (event) {
-        if (event.data) {
-            var port = chrome.runtime.connect({ name: "ReorderSPColumns" });
-            port.postMessage(event.data);
-        }
-    });
-
+    
     injectCodeToPage(getLists);
 
     function getLists() {
@@ -23,7 +16,7 @@
             if (xmlhttp.readyState == XMLHttpRequest.DONE) {
                 if (xmlhttp.status == 200) {
                     var response = JSON.parse(xmlhttp.responseText);
-                    window.postMessage({ key: "allList", value: response.d.results }, "*");
+                    window.postMessage({ id: "ReorderSPColumns", key: "allList", value: response.d.results }, "*");
                 } else {
                     console.log('Error: ' + xmlhttp.statusText)
                 }

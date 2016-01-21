@@ -8,8 +8,8 @@
             maxOpened: 0,
             newestOnTop: true,
             positionClass: 'toast-top-full-width',
-            preventDuplicates: false,
-            preventOpenDuplicates: false,
+            preventDuplicates: true,
+            preventOpenDuplicates: true,
             target: 'body'
         });
     });
@@ -24,17 +24,21 @@
 
         $scope.init = function (listener) {
             if (window["chrome"] && chrome.tabs) {
+
                 chrome.runtime.onConnect.addListener(function (port) {
                     port.onMessage.addListener(listener);
                 });
 
-                chrome.tabs.executeScript({
-                    file: 'Scripts/get-lists.js'
+                chrome.tabs.executeScript(null, {
+                    file: 'Scripts/window-message-listener.js'
+                }, function () {
+                    chrome.tabs.executeScript(null, { file: 'Scripts/get-lists.js' });
                 });
             }
         };
 
         $scope.livePreviewMessageListener = function (msg) {
+            console.log(msg);
             if (msg.key == "allList") {
                 $scope.allList = msg.value;
                 toastr.info($scope.allList.length + " lists found.", 'Reorder List Columns');
@@ -68,4 +72,4 @@
 
         $scope.init($scope.livePreviewMessageListener);
     });
-})();
+})()

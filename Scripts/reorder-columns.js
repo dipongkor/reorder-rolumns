@@ -6,12 +6,15 @@
         script.parentNode.removeChild(script);
     }
 
-    window.addEventListener("message", function (event) {
-        if (event.data) {
-            var port = chrome.runtime.connect({ name: "ReorderSPColumns" });
-            port.postMessage(event.data);
-        }
-    });
+    // window.addEventListener("message", function (event) {
+    //     if (event.data.id && event.data.id == "ReorderSPColumns") {
+    //         var port = chrome.runtime.connect({ name: "ReorderSPColumns" });
+    //         port.postMessage(event.data);
+    //         port.onDisconnect.addListener(function () {
+    //             port = null;
+    //         });
+    //     }
+    // });
 
     injectCodeToPage(reorderColumns, JSON.stringify(selectedList));
 
@@ -38,12 +41,12 @@
             itemContenType.update(false);
             ctx.executeQueryAsync(field_reorder_success, onFailure);
             function field_reorder_success() {
-                window.postMessage({ key: "reorderDone", value: "done" }, "*");
+                window.postMessage({ id: "ReorderSPColumns", key: "reorderDone", value: "done" }, "*");
             }
         }
 
         function onFailure(sender, args) {
-            window.postMessage({ key: "Error", value: args.get_message() }, "*");
+            window.postMessage({ id: "ReorderSPColumns", key: "Error", value: args.get_message() }, "*");
         }
     }
 })();

@@ -6,12 +6,16 @@
         script.parentNode.removeChild(script);
     }
 
-    window.addEventListener("message", function (event) {
-        if (event.data) {
-            var port = chrome.runtime.connect({ name: "ReorderSPColumns" });
-            port.postMessage(event.data);
-        }
-    });
+    // window.addEventListener("message", function (event) {
+    //     if (event.data.id && event.data.id == "ReorderSPColumns")
+    //     {
+    //         var port = chrome.runtime.connect({ name: "ReorderSPColumns" });
+    //         port.postMessage(event.data);
+    //         port.onDisconnect.addListener(function () {
+    //                     port = null;
+    //                 });
+    //     }
+    // });
 
     injectCodeToPage(getContentTypesDetails, '"' + restUrl + '"');
 
@@ -23,7 +27,7 @@
             if (xmlhttp.readyState == XMLHttpRequest.DONE) {
                 if (xmlhttp.status == 200) {
                     var response = JSON.parse(xmlhttp.responseText);
-                    window.postMessage({ key: "contentTypesDetails", value: response.d.results }, "*");
+                    window.postMessage({ id: "ReorderSPColumns", key: "contentTypesDetails", value: response.d.results }, "*");
                 } else {
                     console.log('Error: ' + xmlhttp.statusText);
                 }
