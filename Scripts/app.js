@@ -8,7 +8,7 @@
             maxOpened: 0,
             newestOnTop: true,
             positionClass: 'toast-top-full-width',
-            preventDuplicates: true,
+            preventDuplicates: false,
             preventOpenDuplicates: true,
             target: 'body'
         });
@@ -71,6 +71,10 @@
                 chrome.tabs.executeScript(null, { file: 'Scripts/reorder-columns.js' });
             });
         };
+        
+        $scope.removeSealedContentTypes = function(contentType){
+            return !contentType.Sealed;
+        }
 
         $scope.init($scope.messageListener);
     });

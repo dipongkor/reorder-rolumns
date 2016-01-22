@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label for="selected-content-type" class="control-label">Content Type</label>
                         <select id="selected-content-type" data-ng-model="selectedList.selectedContentType" data-ng-change="contentTypeOnchange(selectedList.selectedContentType)"
-                        class="form-control" data-ng-options="contentType as contentType.Name for contentType in selectedList.ContentTypes.results"></select>
+                        class="form-control" data-ng-options="contentType as contentType.Name for contentType in selectedList.ContentTypes.results|filter:removeSealedContentTypes"></select>
                     </div>
                 </form>
             </div>
