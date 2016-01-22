@@ -37,7 +37,7 @@
             }
         };
 
-        $scope.livePreviewMessageListener = function (msg) {
+        $scope.messageListener = function (msg) {
             if (msg.key == "allList") {
                 $scope.allList = msg.value;
                 toastr.info($scope.allList.length + " lists found.", 'Reorder List Columns');
@@ -72,6 +72,6 @@
             });
         };
 
-        $scope.init($scope.livePreviewMessageListener);
+        $scope.init($scope.messageListener);
     });
 })()
