@@ -22,5 +22,6 @@
         "activeTab",
         "http://*/*",
         "https://*/*"
-    ]
+    ],
+    "homepage_url": "https://github.com/dipongkor/reorder-rolumns"
 }

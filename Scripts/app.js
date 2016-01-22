@@ -1,7 +1,7 @@
 (function () {
-    var myapp = angular.module('reorder-app', ['ui.sortable', 'ngAnimate', 'toastr']);
+    var reorderApp = angular.module('reorder-app', ['ui.sortable', 'ngAnimate', 'toastr']);
 
-    myapp.config(function (toastrConfig) {
+    reorderApp.config(function (toastrConfig) {
         angular.extend(toastrConfig, {
             autoDismiss: true,
             containerId: 'toast-container',
@@ -14,7 +14,7 @@
         });
     });
 
-    myapp.controller('controller', function ($scope, toastr) {
+    reorderApp.controller('reorderCtrl', function ($scope, toastr) {
 
         $scope.selectedList = {
             selectedContentType: {
@@ -38,7 +38,6 @@
         };
 
         $scope.livePreviewMessageListener = function (msg) {
-            console.log(msg);
             if (msg.key == "allList") {
                 $scope.allList = msg.value;
                 toastr.info($scope.allList.length + " lists found.", 'Reorder List Columns');
@@ -50,11 +49,14 @@
             } else if (msg.key == "reorderDone") {
                 toastr.success("New order apllied successfully.", 'Reorder List Columns');
                 $scope.$apply();
+            } else {
+                toastr.error(msg.value, 'Reorder List Columns');
+                $scope.$apply();
             }
         };
 
         $scope.contentTypeOnchange = function (selectedContentType) {
-            var restUrl = selectedContentType.Fields.__deferred.uri + "?$filter=Hidden eq false&$select=TypeDisplayName,Title,InternalName";
+            var restUrl = selectedContentType.Fields.__deferred.uri + "?$filter=Hidden eq false and InternalName ne 'ContentType'&$select=TypeDisplayName,Title,InternalName";
             chrome.tabs.executeScript(null, {
                 code: 'var restUrl = ' + '"' + restUrl + '"'
             }, function () {
