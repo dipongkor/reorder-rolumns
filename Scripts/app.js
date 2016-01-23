@@ -40,17 +40,17 @@
         $scope.messageListener = function (msg) {
             if (msg.key == "allList") {
                 $scope.allList = msg.value;
-                toastr.info($scope.allList.length + " lists found.", 'Reorder List Columns');
+                toastr.info($scope.allList.length + " lists found.", 'Ahem!!');
                 $scope.$apply();
             }
             else if (msg.key == "contentTypesDetails") {
                 $scope.selectedList.selectedContentType.Fields = msg.value;
                 $scope.$apply();
             } else if (msg.key == "reorderDone") {
-                toastr.success("New order apllied successfully.", 'Reorder List Columns');
+                toastr.success("New order apllied successfully.", 'Ahem!!');
                 $scope.$apply();
             } else {
-                toastr.error(msg.value, 'Reorder List Columns');
+                toastr.error(msg.value, 'Ahem!!');
                 $scope.$apply();
             }
         };
